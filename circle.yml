@@ -25,7 +25,7 @@ test:
         pwd:
           ruby/mri/test
 
-    - docker build --no-cache --build-arg version=${version} .
+    - docker build --no-cache --build-arg version=${version} .:
         environment:
           version: 2.2.3
 
