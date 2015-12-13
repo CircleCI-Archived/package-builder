@@ -6,4 +6,4 @@ Ex:
   ./build.sh 2.2.3
 ```
 
-This will create ruby_<version>_amd64.deb file.
+This will create ruby_xxx_amd64.deb file.
