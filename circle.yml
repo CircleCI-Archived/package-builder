@@ -6,28 +6,36 @@ machine:
     - docker
 
 dependencies:
-  override:
-    - exit 0
+  pre:
+    - gem install package_cloud
 
+#test:
+#  override:
+#    - docker build --build-arg version=${version} -t kimh/ruby-build:${version} .:
+#        environment:
+#          version: 2.2.3
+#
+#        pwd:
+#          ruby/mri/src 
+# 
+#    - docker run kimh/ruby-build:${version} cat ruby_${version}_amd64.deb > /tmp/ruby_${version}_amd64.deb:
+#        environment:
+#          version: 2.2.3
+#
+#    - cp /tmp/ruby_${version}_amd64.deb . && docker build --no-cache --build-arg version=${version} .:
+#        environment:
+#          version: 2.2.3
+#
+#        pwd:
+#          ruby/mri/test
 test:
   override:
-    - docker build --build-arg version=${version} -t kimh/ruby-build:${version} .:
-        environment:
-          version: 2.2.3
-
+    - ./build.sh 2.2.3
         pwd:
-          ruby/mri/src 
- 
-    - docker run kimh/ruby-build:${version} cat ruby_${version}_amd64.deb > ruby_${version}_amd64.deb:
-        environment:
-          version: 2.2.3
+          ruby/mri
 
-        pwd:
-          ruby/mri/test
-
-    - docker build --no-cache --build-arg version=${version} .:
-        environment:
-          version: 2.2.3
-
-        pwd:
-          ruby/mri/test
+deployment:
+  production:
+    branch: master
+    commands:
+      - package_cloud push circleci/circleci/ubuntu/trusty /tmp/ruby_${version}_amd64.deb
