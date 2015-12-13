@@ -19,4 +19,4 @@ deployment:
   production:
     branch: master
     commands:
-      - package_cloud push circleci/circleci/ubuntu/trusty /tmp/ruby_${version}_amd64.deb
+      - find ./ | grep _amd64.deb | xargs package_cloud push circleci/circleci/ubuntu/trusty
