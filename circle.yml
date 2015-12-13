@@ -1,0 +1,33 @@
+machine:
+  pre:
+    - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
+    - sudo chmod 0755 /usr/bin/docker
+  services:
+    - docker
+
+dependencies:
+  override:
+    exit 0
+
+test:
+  override:
+    - docker build --build-arg version=${version} -t kimh/ruby-build:${version} .:
+        environment:
+          version: 2.2.3
+
+        pwd:
+          ruby/mri/src 
+ 
+    - docker run kimh/ruby-build:${version} cat ruby_${version}_amd64.deb > ruby_${version}_amd64.deb:
+        environment:
+          version: 2.2.3
+
+        pwd:
+          ruby/mri/test
+
+    - docker build --no-cache --build-arg version=${version} .
+        environment:
+          version: 2.2.3
+
+        pwd:
+          ruby/mri/test
