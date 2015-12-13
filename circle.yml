@@ -30,7 +30,7 @@ dependencies:
 #          ruby/mri/test
 test:
   override:
-    - ./build.sh 2.2.3
+    - ./build.sh 2.2.3:
         pwd:
           ruby/mri
 
