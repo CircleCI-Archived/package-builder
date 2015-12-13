@@ -1,8 +1,9 @@
 ### Building MRI Ruby
-
 ```
-./build.sh <version to install >
+./build.sh <version>
 
 Ex:
   ./build.sh 2.2.3
 ```
+
+This will create ruby_<version>_amd64.deb file.
