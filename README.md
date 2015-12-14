@@ -1,6 +1,5 @@
 # Design Goals
 - Separation between packaing building and image creation
-- Making package installation modular: Don't create a gigantic-everything-prebaked image!!
 - Making package information open to users
 - No more *vm or *env
 - Automation
