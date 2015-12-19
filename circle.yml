@@ -14,9 +14,7 @@ test:
   override:
     - ./build.sh 2.2.3:
         pwd: ruby/mri
-
-test:
-  override:
+	
     - ./build.sh 2.7.9:
         pwd: python/python
 
