@@ -5,6 +5,8 @@ set -x
 
 version=$1
 
+find ./ | grep .deb | xargs rm -f
+
 pushd src/
 docker build --build-arg version=${version} -t kimh/ruby-build:${version} .
 docker run kimh/ruby-build:${version} cat ruby_${version}_amd64.deb > ruby_${version}_amd64.deb

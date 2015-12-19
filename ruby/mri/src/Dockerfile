@@ -17,7 +17,6 @@ RUN ruby-build ${version} /opt/circleci/ruby/${version}
 RUN fpm -s dir -t deb -C /opt/circleci/ruby/${version} \
       --name ruby \
       --version ${version} \
-      --depends libyaml-dev \
       --prefix /opt/circleci/ruby/${version} \
       --force \
       --description "Ruby ${version} built by CircleCI"  \
