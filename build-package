@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+set -x
+
+package=$1
+version=$2
+
+case $package in
+    ruby   ) dir=ruby/mri;;
+    python ) dir=python/cpython;;
+    *      ) exit 1;;
+esac
+
+cd $dir
+
+pushd src/
+docker build --build-arg version=${version} -t kimh/${package}-build:${version} .
+docker run kimh/${package}-build:${version} cat ${package}_${version}_amd64.deb > ${package}_${version}_amd64.deb
+popd
+
+pushd test/
+cp ../src/${package}_${version}_amd64.deb .
+docker build --no-cache --build-arg version=${version} -t kimh/${package}-test:${version} .
+popd 

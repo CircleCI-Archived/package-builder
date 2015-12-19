@@ -12,11 +12,8 @@ dependencies:
 
 test:
   override:
-    - ./build.sh 2.2.3:
-        pwd: ruby/mri
-
-    - ./build.sh 2.7.9:
-        pwd: python/cpython
+    - ./build-package ruby   2.2.3
+    - ./build-package python 2.7.9
 
 deployment:
   production:
