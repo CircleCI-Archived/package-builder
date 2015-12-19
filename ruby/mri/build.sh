@@ -12,5 +12,5 @@ popd
 
 pushd test/
 cp ../src/ruby_${version}_amd64.deb .
-docker build --no-cache --build-arg version=${version} .
+docker build --no-cache --build-arg version=${version} -t kimh/ruby-test:${version} .
 popd 
