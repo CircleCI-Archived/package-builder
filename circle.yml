@@ -16,7 +16,7 @@ test:
         pwd: ruby/mri
 
     - ./build.sh 2.7.9:
-        pwd: python/python
+        pwd: python/cpython
 
 deployment:
   production:
