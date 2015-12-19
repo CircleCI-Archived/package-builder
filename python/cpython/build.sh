@@ -12,5 +12,5 @@ popd
 
 pushd test/
 cp ../src/python_${version}_amd64.deb .
-docker build --build-arg version=${version} .
+docker build --no-cache --build-arg version=${version} -t kimh/python-test:${version} .
 popd 
