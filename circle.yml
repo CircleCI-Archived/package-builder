@@ -15,8 +15,13 @@ test:
     - ./build.sh 2.2.3:
         pwd: ruby/mri
 
+test:
+  override:
+    - ./build.sh 2.7.9:
+        pwd: python/python
+
 deployment:
   production:
     branch: master
     commands:
-      - find ./ | grep _amd64.deb | xargs package_cloud push circleci/circleci/ubuntu/trusty
+      - find ./ | grep _amd64.deb | xargs package_cloud push circleci/circleci/ubuntu/trusty; true
