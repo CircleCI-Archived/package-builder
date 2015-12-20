@@ -5,15 +5,16 @@ set -x
 
 package=$1
 version=$2
+deb=circleci-${package}${version}_v0.0.1_amd64.deb
 
 cd $package
 
 pushd src/
 docker build --build-arg version=${version} -t kimh/${package}-build:${version} .
-docker run kimh/${package}-build:${version} cat ${package}_${version}_amd64.deb > ${package}_${version}_amd64.deb
+docker run kimh/${package}-build:${version} cat $deb > $deb
 popd
 
 pushd test/
-cp ../src/${package}_${version}_amd64.deb .
+cp ../src/$deb .
 docker build --no-cache --build-arg version=${version} -t kimh/${package}-test:${version} .
 popd 

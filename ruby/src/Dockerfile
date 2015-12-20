@@ -15,8 +15,8 @@ RUN git clone https://github.com/rbenv/ruby-build.git && cd ruby-build && ./inst
 RUN ruby-build ${version} /opt/circleci/ruby/${version}
 
 RUN fpm -s dir -t deb -C /opt/circleci/ruby/${version} \
-      --name ruby \
-      --version ${version} \
+      --name circleci-ruby${version} \
+      --version v0.0.1 \
       --prefix /opt/circleci/ruby/${version} \
       --force \
       --description "Ruby ${version} built by CircleCI"  \
