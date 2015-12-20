@@ -19,4 +19,5 @@ deployment:
   production:
     branch: master
     commands:
-      - find ./ | grep _amd64.deb | xargs package_cloud push circleci/circleci/ubuntu/trusty; true
+      # Packagecloud doesn't allow to override, so only new packages will be pushed.
+      - for p in $(find ./ | grep _amd64.deb); do package_cloud push circleci/circleci/ubuntu/trusty $p; done; true
