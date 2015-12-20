@@ -1,7 +1,7 @@
 FROM circleci/ubuntu-server
 ARG version 
 USER ubuntu
-ENV deb circleci_ruby${version}_v0.0.1_amd64.deb 
+ENV deb circleci-ruby${version}_v0.0.1_amd64.deb
 ADD $deb $deb
 RUN sudo dpkg -i $deb
 ENV RUBYLIB /opt/circleci/ruby/${version}/lib/ruby/2.2.0:/opt/circleci/ruby/${version}/lib/ruby/2.2.0/x86_64-linux
