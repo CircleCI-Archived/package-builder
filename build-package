@@ -19,7 +19,10 @@ docker build --build-arg package=${package} \
 docker run kimh/${package}-build:${version} cat $deb > ../$deb
 popd
 
-pushd test/
-cp ../$deb .
-docker build --build-arg version=${version} -t kimh/${package}-test:${version} .
-popd 
+if [ -f test/Dockerfile ]; then
+    pushd test/
+    cp ../$deb .
+    docker build --build-arg version=${version} -t kimh/${package}-test:${version} .
+    popd 
+fi
+
