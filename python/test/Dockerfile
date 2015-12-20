@@ -11,4 +11,5 @@ ENV PATH /opt/circleci/python/${version}/bin:/usr/local/sbin:/usr/local/bin:/usr
 RUN python --version
 RUN pip --version
 RUN nosetests --version
+RUN pip install django
 

@@ -15,6 +15,8 @@ RUN git clone https://github.com/rbenv/ruby-build.git && cd ruby-build && ./inst
 
 RUN ruby-build ${version} /opt/circleci/ruby/${version}
 
+RUN /opt/circleci/ruby/${version}/bin/gem install bundler
+
 RUN fpm -s dir -t deb -C /opt/circleci/ruby/${version} \
       --name circleci-ruby${version} \
       --version 0.0.1 \
