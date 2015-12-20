@@ -13,10 +13,10 @@ cd $package
 
 pushd src/
 docker build --build-arg version=${version} -t kimh/${package}-build:${version} .
-docker run kimh/${package}-build:${version} cat $deb > $deb
+docker run kimh/${package}-build:${version} cat $deb > ../$deb
 popd
 
 pushd test/
-cp ../src/$deb .
+cp ../$deb .
 docker build --no-cache --build-arg version=${version} -t kimh/${package}-test:${version} .
 popd 

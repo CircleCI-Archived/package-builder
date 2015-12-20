@@ -6,9 +6,10 @@ RUN gem install fpm
 RUN mkdir -p /opt/circleci/ruby/${version}
 
 ## Ruby configure options and build dependencies
+ENV deps "autoconf bison libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev zlib1g-dev"
 ENV RUBY_CONFIGURE_OPTS "--disable-install-doc"
 
-RUN apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+RUN apt-get -y install $deps
 
 RUN git clone https://github.com/rbenv/ruby-build.git && cd ruby-build && ./install.sh
 
@@ -20,4 +21,5 @@ RUN fpm -s dir -t deb -C /opt/circleci/ruby/${version} \
       --prefix /opt/circleci/ruby/${version} \
       --force \
       --description "Ruby ${version} built by CircleCI"  \
+      $(echo $deps | sed 's/^/ /' | sed 's/ / -d /g') \
       .
