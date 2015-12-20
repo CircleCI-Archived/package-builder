@@ -12,7 +12,10 @@ find ./ | grep amd64.deb | xargs rm -f
 cd $package
 
 pushd src/
-docker build --build-arg version=${version} -t kimh/${package}-build:${version} .
+docker build --build-arg package=${package} \
+             --build-arg version=${version} \
+             --build-arg prefix=/opt/circleci \
+             -t kimh/${package}-build:${version} .
 docker run kimh/${package}-build:${version} cat $deb > ../$deb
 popd
 
