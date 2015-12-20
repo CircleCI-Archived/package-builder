@@ -18,6 +18,8 @@ RUN curl -k -L -O https://www.python.org/ftp/python/${version}/Python-${version}
 
 RUN python-build ${version} /opt/circleci/python/${version}
 
+RUN /opt/circleci/python/${version}/bin/pip install nose pep8
+
 RUN fpm -s dir -t deb -C /opt/circleci/python/${version} \
       --name circleci-python${version} \
       --version 0.0.1 \
