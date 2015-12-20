@@ -13,6 +13,7 @@ dependencies:
 test:
   override:
     - ./build-package ruby   2.2.3
+    - ./build-package ruby   2.2.2
     - ./build-package python 2.7.9
 
 deployment:
