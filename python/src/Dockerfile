@@ -13,9 +13,6 @@ RUN apt-get -y install $deps
 
 RUN git clone git://github.com/yyuu/pyenv.git && cd pyenv/plugins/python-build && ./install.sh
 
-RUN curl -k -L -O https://www.python.org/ftp/python/${version}/Python-${version}.tgz && \
-    tar zxvf Python-${version}.tgz
-
 RUN python-build ${version} /opt/circleci/python/${version}
 
 RUN /opt/circleci/python/${version}/bin/pip install nose pep8
