@@ -20,7 +20,7 @@ popd
 if [ -f test/Dockerfile ]; then
     pushd test/
     cp ../$deb .
-    docker build --build-arg version=${version} -t kimh/${package}-test:${version} .
+    docker build --build-arg package=${package} --build-arg version=${version} -t kimh/${package}-test:${version} .
     popd 
 fi
 
