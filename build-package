@@ -5,14 +5,21 @@ set -x
 
 package=$1
 version=$2
+prefix_default=/opt/circleci
 deb=circleci-${package}${version}_0.0.1_amd64.deb
+
+if [[ -v BUILD_PREFIX ]]; then
+    prefix=$BUILD_PREFIX
+else
+    prefix=$prefix_default
+fi
 
 cd $package
 
 pushd src/
 docker build --build-arg package=${package} \
              --build-arg version=${version} \
-             --build-arg prefix=/opt/circleci \
+             --build-arg prefix=${prefix} \
              -t kimh/${package}-build:${version} .
 docker run kimh/${package}-build:${version} cat $deb > ../$deb
 popd
