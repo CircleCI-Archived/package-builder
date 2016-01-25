@@ -12,7 +12,6 @@ dependencies:
 
 test:
   override:
-    - ./build-package ruby 1.9.3-p551 /opt/circleci/ruby/1.9.3-p551
     - ./build-package ruby 2.0.0-p647 /opt/circleci/ruby/ruby-2.0.0-p647
     - ./build-package ruby 2.1.8 /opt/circleci/ruby/ruby-2.1.8
     - ./build-package ruby 2.2.4 /opt/circleci/ruby/ruby-2.2.4
