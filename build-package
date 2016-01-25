@@ -14,15 +14,15 @@ pushd src/
 docker build --build-arg package=${package} \
              --build-arg version=${version} \
              --build-arg install_dir=${install_dir} \
-             -t kimh/${package}-build:${version} .
+             -t package-builder .
 
-docker run kimh/${package}-build:${version} cat $deb > ../$deb
+docker run package-builder cat $deb > ../$deb
 popd
 
-if [ -f test/Dockerfile ]; then
-    pushd test/
-    cp ../$deb .
-    docker build --build-arg package=${package} --build-arg version=${version} --build-arg install_dir=${install_dir} -t kimh/${package}-test:${version} .
-    popd
-fi
+#if [ -f test/Dockerfile ]; then
+#    pushd test/
+#    cp ../$deb .
+#    docker build --build-arg package=${package} --build-arg version=${version} --build-arg install_dir=${install_dir} -t kimh/${package}-test:${version} .
+#    popd
+#fi
 
