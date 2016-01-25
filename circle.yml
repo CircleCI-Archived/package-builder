@@ -12,10 +12,11 @@ dependencies:
 
 test:
   override:
-    - ./build-package ruby   2.2.3
-    - ./build-package ruby   2.2.2
-    - ./build-package python 2.7.9
-    - ./build-package php    5.2.21
+    - ./build-package ruby 1.9.3 /opt/circleci/ruby/ruby-1.9.3
+    - ./build-package ruby 2.0.0 /opt/circleci/ruby/ruby-2.0.0
+    - ./build-package ruby 2.1.8 /opt/circleci/ruby/ruby-2.1.8
+    - ./build-package ruby 2.2.4 /opt/circleci/ruby/ruby-2.2.4
+    - ./build-package ruby 2.3.0 /opt/circleci/ruby/ruby-2.3.0
 
 deployment:
   production:
