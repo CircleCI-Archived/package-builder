@@ -27,6 +27,7 @@ dependencies:
 test:
   override:
     - >
+      echo $CIRCLE_NODE_INDEX
       case $CIRCLE_NODE_INDEX in
         0)
           # Ruby
