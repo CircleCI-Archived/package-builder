@@ -17,7 +17,7 @@ dependencies:
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     - docker pull kimh/package_builder || true
     #- docker build -t kimh/package_builder .
-    - docker push kimh/package_builder
+    #- docker push kimh/package_builder
 
 test:
   override:
