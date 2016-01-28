@@ -3,7 +3,7 @@ machine:
     - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
     - sudo chmod 0755 /usr/bin/docker
     - echo 'check_version() { curl "https://$PACKAGECLOUD_TOKEN:@packagecloud.io/api/v1/repos/circleci/trusty/packages.json" | grep $1 | grep $2 >/dev/null 2>&1; }' >> ~/.circlerc
-    - echo 'build_pkg() { if ! check_version $1 $2; then ./build-package $1 $2 $pkg_dir/$1/$2; fi; }' >> ~/.circlerc
+    - echo 'build_pkg() { if ! check_version $1 $2; then ./build-package $1 $2 $3; fi; }' >> ~/.circlerc
 
   services:
     - docker
@@ -23,12 +23,19 @@ dependencies:
 
 test:
   override:
+    # Ruby
     - build_pkg ruby 2.0.0-p647
+    #- build_pkg ruby 2.1.8
+    #- build_pkg ruby 2.2.4
+    #- build_pkg ruby 2.3.0
+
+    # Python
     - build_pkg python 2.1.3
-    #- ./build-package ruby 2.0.0-p647 /opt/circleci/ruby/ruby-2.0.0-p647
-    #- ./build-package ruby 2.1.8 /opt/circleci/ruby/ruby-2.1.8
-    #- ./build-package ruby 2.2.4 /opt/circleci/ruby/ruby-2.2.4
-    #- ./build-package ruby 2.3.0 /opt/circleci/ruby/ruby-2.3.0
+
+    - ./build-package ruby 2.0.0-p647 /opt/circleci/ruby/ruby-2.0.0-p647
+    - ./build-package ruby 2.1.8 /opt/circleci/ruby/ruby-2.1.8
+    - ./build-package ruby 2.2.4 /opt/circleci/ruby/ruby-2.2.4
+    - ./build-package ruby 2.3.0 /opt/circleci/ruby/ruby-2.3.0
 
 deployment:
   production:

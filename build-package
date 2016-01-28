@@ -14,7 +14,7 @@ pushd src/
 docker build --build-arg package=${package} \
              --build-arg version=${version} \
              --build-arg install_dir=${install_dir} \
-             -t package-builder .
+             -t package_builder .
 
 docker run package-builder cat $deb > ../$deb
 popd
