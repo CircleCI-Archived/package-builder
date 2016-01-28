@@ -30,10 +30,12 @@ test:
       case $CIRCLE_NODE_INDEX in
         0)
           # Ruby
+          echo 1
           build_ruby 2.0.0-p647
           ;;
         1)
           # Python
+          echo 2
           build_python 2.6.9
           ;;
         *)
