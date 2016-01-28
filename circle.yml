@@ -21,7 +21,7 @@ dependencies:
 
 test:
   override:
-    - echo 'check_version() { curl "https://$PACKAGECLOUD_TOKEN:@packagecloud.io/api/v1/repos/circleci/trusty/packages.json" | grep $1 | grep $2; }' >> ~/.circlerc
+    - echo 'check_version() { curl "https://$PACKAGECLOUD_TOKEN:@packagecloud.io/api/v1/repos/circleci/trusty/packages.json" | grep $1 | grep $2 >/dev/null 2>&1; }' >> ~/.circlerc
     - echo 'build_pkg() { if ! check_version $1 $2; then ./build-package $1 $2 $pkg_dir/$1/$2; fi; }' >> ~/.circlerc
     - build_pkg ruby 2.0.0-p647
     #- ./build-package ruby 2.0.0-p647 /opt/circleci/ruby/ruby-2.0.0-p647
