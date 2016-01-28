@@ -1,4 +1,4 @@
-FROM circleci/ubuntu-server
+FROM package-builder
 ARG version
 ARG package
 ARG install_dir

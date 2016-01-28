@@ -6,16 +6,26 @@ machine:
   services:
     - docker
 
+  environment:
+    pkg_dir: /opt/circleci
+    ruby_dir: $pkg_dir/ruby
+    python_dir: $pkg_dir/python
+
 dependencies:
   pre:
     - gem install package_cloud
+    - docker build -t package_builder .
 
 test:
   override:
-    - ./build-package ruby 2.0.0-p647 /opt/circleci/ruby/ruby-2.0.0-p647
-    - ./build-package ruby 2.1.8 /opt/circleci/ruby/ruby-2.1.8
-    - ./build-package ruby 2.2.4 /opt/circleci/ruby/ruby-2.2.4
-    - ./build-package ruby 2.3.0 /opt/circleci/ruby/ruby-2.3.0
+    - check_version() { apt-cache search circleci-$1 | grep -q $2; }
+    - build_pkg() { if ! check_version $1 $2; then ./build-package $1 $2 $pkg_dir/$1/$2; fi; }
+
+    - build_pkg ruby 2.0.0-p647
+    #- ./build-package ruby 2.0.0-p647 /opt/circleci/ruby/ruby-2.0.0-p647
+    #- ./build-package ruby 2.1.8 /opt/circleci/ruby/ruby-2.1.8
+    #- ./build-package ruby 2.2.4 /opt/circleci/ruby/ruby-2.2.4
+    #- ./build-package ruby 2.3.0 /opt/circleci/ruby/ruby-2.3.0
 
 deployment:
   production:
