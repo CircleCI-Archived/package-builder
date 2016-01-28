@@ -18,6 +18,7 @@ dependencies:
 
 test:
   override:
+    - curl -s https://packagecloud.io/install/repositories/circleci/trusty/script.deb.sh | sudo bash
     - check_version() { apt-cache search circleci-$1 | grep -q $2; }
     - build_pkg() { if ! check_version $1 $2; then ./build-package $1 $2 $pkg_dir/$1/$2; fi; }
 
