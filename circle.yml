@@ -24,13 +24,13 @@ dependencies:
 test:
   override:
     # Ruby
-    - p=ruby v=2.0.0-p647 build_pkg $p $v $pkg_dir/$p/ruby-$v
+    - p=ruby; v=2.0.0-p647; build_pkg $p $v $pkg_dir/$p/ruby-$v
     #- build_pkg ruby 2.1.8
     #- build_pkg ruby 2.2.4
     #- build_pkg ruby 2.3.0
 
     # Python
-    - p=python v=2.6.9 build_pkg $p $v $pkg_dir/python/$v
+    - p=python; v=2.6.9; build_pkg $p $v $pkg_dir/python/$v
 
 deployment:
   production:
