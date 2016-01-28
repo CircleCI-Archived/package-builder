@@ -2,9 +2,6 @@ FROM kimh/package_builder
 ARG version
 ARG prefix
 ARG package
-RUN apt-get update
-RUN apt-get -y install ruby-dev build-essential git
-RUN gem install fpm
 RUN mkdir -p ${prefix}/${package}/${version}
 
 ENV deps "libpng12-dev re2c m4 libxslt1-dev libjpeg-dev libxml2-dev libtidy-dev libmcrypt-dev libreadline-dev libmagic-dev libssl-dev libcurl4-openssl-dev libfreetype6-dev libapache2-mod-php5 autoconf"

@@ -2,9 +2,6 @@ FROM kimh/package_builder
 ARG version
 ARG package
 ARG install_dir
-RUN apt-get update
-RUN apt-get -y install ruby-dev build-essential git
-RUN gem install fpm
 RUN mkdir -p ${install_dir}
 
 ## Python configure options and build dependencies
