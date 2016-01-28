@@ -38,6 +38,7 @@ test:
           ;;
         *)
           exit 0
+          
         ;;
       esac
 
