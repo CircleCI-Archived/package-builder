@@ -10,7 +10,7 @@ ENV CONFIGURE_OPTS "--enable-unicode=ucs4"
 
 RUN apt-get -y install $deps
 
-RUN git clone git://github.com/yyuu/pyenv.git && cd pyenv/plugins/python-build && ./install.sh
+RUN if [ ! -d ~/.pyenv ]; then git clone git://github.com/yyuu/pyenv.git && cd pyenv/plugins/python-build && ./install.sh fi
 
 RUN python-build ${version} ${install_dir}
 
