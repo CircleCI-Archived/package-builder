@@ -36,9 +36,9 @@ test:
           # Python
           build_python 2.6.9
           ;;
-	*)
-	  exit 0
-	  ;;
+        *)
+          exit 0
+        ;;
       esac
 
     #- build_pkg ruby 2.1.8
