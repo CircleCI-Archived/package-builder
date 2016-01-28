@@ -1,4 +1,4 @@
-FROM circleci/ubuntu-server
+FROM kimh/package-builder
 ARG version
 ARG prefix
 ARG package

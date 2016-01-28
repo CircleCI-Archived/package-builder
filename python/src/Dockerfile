@@ -1,4 +1,4 @@
-FROM package-builder
+FROM kimh/package-builder
 ARG version
 ARG package
 ARG install_dir
