@@ -6,7 +6,7 @@ set -x
 package=$1
 version=$2
 install_dir=$3
-deb=circleci-${package}${version}_0.0.1_amd64.deb
+deb=circleci-${package}-${version}_0.0.1_amd64.deb
 image=kimh/package_builder
 
 cd $package

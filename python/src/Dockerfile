@@ -14,10 +14,10 @@ RUN if [ ! -d "pyenv" ]; then git clone git://github.com/yyuu/pyenv.git  && cd p
 
 RUN python-build ${version} ${install_dir}
 
-RUN ${install_dir}/bin/pip install nose pep8
+RUN ${install_dir}/bin/pip install nose pep8 virtualenv
 
 RUN fpm -s dir -t deb -C ${install_dir} \
-      --name circleci-python${version} \
+      --name circleci-python-${version} \
       --version 0.0.1 \
       --prefix ${install_dir} \
       --force \
