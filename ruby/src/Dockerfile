@@ -17,7 +17,7 @@ RUN ruby-build ${version} ${install_dir}
 RUN ${install_dir}/bin/gem install bundler
 
 RUN fpm -s dir -t deb -C ${install_dir} \
-      --name circleci-${package}v${version} \
+      --name circleci-${package}-${version} \
       --version 0.0.1 \
       --prefix ${install_dir} \
       --force \
