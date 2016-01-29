@@ -15,6 +15,7 @@ cd $package
 pushd src/
 docker build --build-arg package=${package} \
              --build-arg version=${version} \
+             --build-arg release=${release} \
              --build-arg install_dir=${install_dir} \
              -t $image .
 
