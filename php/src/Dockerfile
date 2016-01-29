@@ -1,6 +1,7 @@
 FROM kimh/package_builder
 ARG version
 ARG package
+ARG release
 ARG install_dir
 RUN mkdir -p ${install_dir}
 
@@ -14,7 +15,7 @@ RUN php-build ${version} ${install_dir}
 
 RUN fpm -s dir -t deb -C ${install_dir} \
       --name circleci-${package}-${version} \
-      --version 0.0.1 \
+      --version ${release} \
       --prefix ${install_dir} \
       --force \
       --description "PHP ${version} built by CircleCI"  \

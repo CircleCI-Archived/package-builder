@@ -4,9 +4,9 @@ machine:
     - sudo chmod 0755 /usr/bin/docker
     - echo 'check_version() { curl "https://$PACKAGECLOUD_TOKEN:@packagecloud.io/api/v1/repos/circleci/trusty/packages.json" | grep $1 | grep $2 | grep $3  >/dev/null 2>&1; }' >> ~/.circlerc
     - echo 'build_pkg() { if ! check_version $1 $2 $3; then ./build-package $1 $2 $3 $4; fi; }' >> ~/.circlerc
-    - echo 'build_ruby() { build_pkg ruby $1 $pkg_dir/ruby/ruby-$1; }' >> ~/.circlerc
+    - echo 'build_ruby() { build_pkg ruby $1 $ruby_version $pkg_dir/ruby/ruby-$1; }' >> ~/.circlerc
     - echo 'build_python() { build_pkg python $1 $python_version $pkg_dir/python/$1; }' >> ~/.circlerc
-    - echo 'build_php() { build_pkg php $1 $pkg_dir/php/$1; }' >> ~/.circlerc
+    - echo 'build_php() { build_pkg php $1 $php_version $pkg_dir/php/$1; }' >> ~/.circlerc
     - echo 'push_pkg() { for p in $(find ./ | grep _amd64.deb); do package_cloud push circleci/trusty/ubuntu/trusty $p; done; true; }' >> ~/.circlerc
 
   services:
@@ -16,6 +16,10 @@ machine:
     pkg_dir: /opt/circleci
     ruby_dir: $pkg_dir/ruby
     python_dir: $pkg_dir/python
+
+    python_version: 101
+    ruby_version:   100
+    php_version:    100
 
 dependencies:
   pre:
@@ -45,9 +49,6 @@ test:
   #        exit 0
   #      ;;
   #    esac
-  environment:
-    python_version: 101
-
   override:
     # Python
     - build_python 2.6.9 && push_pkg
