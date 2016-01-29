@@ -56,10 +56,10 @@ test:
     - build_python pypy-2.6.1 && push_pkg
     - build_python pypy-4.0.1 && push_pkg
 
-    - build_pkg ruby 2.0.0-p647 && push_pkg
-    - build_pkg ruby 2.1.8 && push_pkg
-    - build_pkg ruby 2.2.4 && push_pkg
-    - build_pkg ruby 2.3.0 && push_pkg
+    - build_ruby 2.0.0-p647 && push_pkg
+    - build_ruby 2.1.8 && push_pkg
+    - build_ruby 2.2.4 && push_pkg
+    - build_ruby 2.3.0 && push_pkg
 
 
 deployment:
