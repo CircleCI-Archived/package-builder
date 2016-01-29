@@ -17,7 +17,7 @@ RUN python-build ${version} ${install_dir}
 RUN ${install_dir}/bin/pip install nose pep8 virtualenv
 
 RUN fpm -s dir -t deb -C ${install_dir} \
-      --name circleci-python-${version} \
+      --name circleci-${package}-${version} \
       --version 0.0.1 \
       --prefix ${install_dir} \
       --force \
