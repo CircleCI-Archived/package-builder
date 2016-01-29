@@ -10,7 +10,7 @@ ENV RUBY_CONFIGURE_OPTS "--disable-install-doc"
 
 RUN apt-get -y install $deps
 
-RUN git clone https://github.com/rbenv/ruby-build.git && cd ruby-build && ./install.sh
+RUN if [ ! -d "ruby-build" ]; then git clone https://github.com/rbenv/ruby-build.git && cd ruby-build && ./install.sh; fi
 
 RUN ruby-build ${version} ${install_dir}
 
