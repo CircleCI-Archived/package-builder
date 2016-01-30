@@ -31,39 +31,34 @@ test:
   override:
     - ? case $CIRCLE_NODE_INDEX in
           0)
-            echo 1
-            echo 2
-            
-            build_python 2.6.9
-            build_python 2.7.11
-            build_python 3.1.5
-            push_pkg
+            build_python 2.6.9;
+            build_python 2.7.11;
+            build_python 3.1.5;
+            push_pkg;
             ;;
           1)
-            echo 3
-            echo 4
-            build_python 3.3.6
-            build_python 3.5.1
-            build_python pypy-1.9
-            build_python pypy-2.6.1
-            build_python pypy-4.0.1
-            push_pkg
+            build_python 3.3.6;
+            build_python 3.5.1;
+            build_python pypy-1.9;
+            build_python pypy-2.6.1;
+            build_python pypy-4.0.1;
+            push_pkg;
             ;;
           2)
-            build_ruby 2.0.0-p647
-            build_ruby 2.1.8
-            build_ruby 2.2.4
-            build_ruby 2.3.0
-            push_pkg
+            build_ruby 2.0.0-p647;
+            build_ruby 2.1.8;
+            build_ruby 2.2.4;
+            build_ruby 2.3.0;
+            push_pkg;
             ;;
           3)
-            build_php 5.5.31
-            build_php 5.6.17
-            build_php 7.0.2
-            push_pkg
+            build_php 5.5.31;
+            build_php 5.6.17;
+            build_php 7.0.2;
+            push_pkg;
             ;;
           *)
-            exit 0
+            exit 0;
           ;;
         esac
 
