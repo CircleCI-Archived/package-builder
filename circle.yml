@@ -28,36 +28,50 @@ dependencies:
     - docker pull kimh/package_builder || true
     - docker build -t kimh/package_builder .
     - docker push kimh/package_builder
-
-
+    
 test:
   override:
-    # Python
-    - build_python 2.6.9 && push_pkg
-    - build_python 2.7.11 && push_pkg
-    - build_python 3.1.5 && push_pkg
-    # Looks breaking now https://github.com/yyuu/pyenv/issues/531
-    #- build_python 3.2.6 && push_pkg
-    - build_python 3.3.6 && push_pkg
-    - build_python 3.5.1 && push_pkg
-    - build_python pypy-1.9 && push_pkg
-    - build_python pypy-2.6.1 && push_pkg
-    - build_python pypy-4.0.1 && push_pkg
+    - ? case $CIRCLE_NODE_INDEX in
+          0)
+            # Python 1
+            build_python 2.6.9 && push_pkg
+            build_python 2.7.11 && push_pkg
+            build_python 3.1.5 && push_pkg
+            #Looks breaking now https://github.com/yyuu/pyenv/issues/531
+            #build_python 3.2.6 && push_pkg
+            push_pkg
+            ;;
+          1)
+            # Python 2
+            build_python 3.3.6 && push_pkg
+            build_python 3.5.1 && push_pkg
+            build_python pypy-1.9 && push_pkg
+            build_python pypy-2.6.1 && push_pkg
+            build_python pypy-4.0.1 && push_pkg
+            ;;
+          2)
+            # Ruby
+            build_ruby 2.0.0-p647 && push_pkg
+            build_ruby 2.1.8 && push_pkg
+            build_ruby 2.2.4 && push_pkg
+            build_ruby 2.3.0 && push_pkg
+            ;;
+          3)
+            # PHP
+            build_php 5.5.31 && push_pkg
+            build_php 5.6.17 && push_pkg
+            build_php 7.0.2  && phsh_pkg
+            ;;
+          *)
+            exit 0
+          ;;
+        esac
 
-    # Ruby
-    - build_ruby 2.0.0-p647 && push_pkg
-    - build_ruby 2.1.8 && push_pkg
-    - build_ruby 2.2.4 && push_pkg
-    - build_ruby 2.3.0 && push_pkg
-    
-    # PHP
-    - build_php 5.5.31 && push_pkg
-    - build_php 5.6.17 && push_pkg
-    - build_php 7.0.2  && phsh_pkg
+      : parallel: true
 
-deployment:
-  production:
-    branch: master
-    commands:
-      # Packagecloud doesn't allow to override, so only new packages will be pushed.
-      - for p in $(find ./ | grep _amd64.deb); do package_cloud push circleci/trusty/ubuntu/trusty $p; done; true
+#deployment:
+#  production:
+#    branch: master
+#    commands:
+#      # Packagecloud doesn't allow to override, so only new packages will be pushed.
+#      - for p in $(find ./ | grep _amd64.deb); do package_cloud push circleci/trusty/ubuntu/trusty $p; done; true
