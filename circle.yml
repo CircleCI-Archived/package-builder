@@ -28,21 +28,17 @@ dependencies:
     - docker pull kimh/package_builder || true
     - docker build -t kimh/package_builder .
     - docker push kimh/package_builder
-    
+
 test:
   override:
     - ? case $CIRCLE_NODE_INDEX in
           0)
-            # Python 1
             build_python 2.6.9 && push_pkg
             build_python 2.7.11 && push_pkg
             build_python 3.1.5 && push_pkg
-            #Looks breaking now https://github.com/yyuu/pyenv/issues/531
-            #build_python 3.2.6 && push_pkg
             push_pkg
             ;;
           1)
-            # Python 2
             build_python 3.3.6 && push_pkg
             build_python 3.5.1 && push_pkg
             build_python pypy-1.9 && push_pkg
@@ -50,14 +46,13 @@ test:
             build_python pypy-4.0.1 && push_pkg
             ;;
           2)
-            # Ruby
             build_ruby 2.0.0-p647 && push_pkg
             build_ruby 2.1.8 && push_pkg
             build_ruby 2.2.4 && push_pkg
             build_ruby 2.3.0 && push_pkg
             ;;
           3)
-            # PHP
+            \ # This is comment
             build_php 5.5.31 && push_pkg
             build_php 5.6.17 && push_pkg
             build_php 7.0.2  && phsh_pkg
