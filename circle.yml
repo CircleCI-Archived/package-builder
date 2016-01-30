@@ -63,6 +63,7 @@ test:
         esac
 
       : parallel: true
+        timeout: 3600
 
 #deployment:
 #  production:
