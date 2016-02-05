@@ -13,7 +13,7 @@ RUN if [ ! -d "php-build" ]; then git clone git://github.com/php-build/php-build
 
 RUN echo "--with-apxs2" >> /usr/local/share/php-build/default_configure_options
 
-RUN php-build ${version} ${install_dir}
+RUN php-build -i development --pear ${version} ${install_dir}
 
 RUN mkdir -p ${install_dir}/libexec/apache2/ && cp /usr/lib/apache2/modules/libphp7.so ${install_dir}/libexec/apache2/
 
