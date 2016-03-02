@@ -9,7 +9,7 @@ RUN mkdir -p ${install_dir}
 ENV deps "zlib1g-dev libreadline-dev libsqlite3-dev libgdbm-dev libssl-dev libbz2-dev"
 ENV CONFIGURE_OPTS "--enable-unicode=ucs4"
 
-RUN apt-get -y install $deps
+RUN apt-get update && apt-get -y install $deps
 
 RUN if [ ! -d "node-build" ]; then git clone https://github.com/nodenv/node-build.git && cd node-build && ./install.sh; fi
 
