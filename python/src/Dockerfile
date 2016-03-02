@@ -9,7 +9,7 @@ RUN mkdir -p ${install_dir}
 ENV deps "zlib1g-dev libreadline-dev libsqlite3-dev libgdbm-dev libssl-dev libbz2-dev"
 ENV CONFIGURE_OPTS "--enable-unicode=ucs4"
 
-RUN apt-get -y install $deps
+RUN apt-get update && apt-get -y install $deps
 
 RUN if [ ! -d "pyenv" ]; then git clone git://github.com/yyuu/pyenv.git  && cd pyenv/plugins/python-build && ./install.sh; fi
 
