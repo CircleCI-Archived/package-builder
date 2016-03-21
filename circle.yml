@@ -55,6 +55,7 @@ test:
             build_ruby 2.1.6;
             build_ruby 2.1.7;
             build_ruby 2.1.8;
+            build_ruby 2.2.2;
             build_ruby 2.2.4;
             build_ruby 2.3.0;
             push_pkg;
