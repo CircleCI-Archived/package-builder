@@ -17,7 +17,7 @@ machine:
     pkg_dir: /opt/circleci
 
     python_release:   1
-    ruby_release:     1
+    ruby_release:     2
     php_release:      1
     nodejs_release:   1
 

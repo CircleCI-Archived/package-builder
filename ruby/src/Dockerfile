@@ -22,6 +22,7 @@ RUN fpm -s dir -t deb -C ${install_dir} \
       --version ${release} \
       --prefix ${install_dir} \
       --force \
+      --deb-compression xz \
       --description "Ruby ${version} built by CircleCI"  \
       $(echo $deps | sed 's/^/ /' | sed 's/ / -d /g') \
       .
