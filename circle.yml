@@ -2,7 +2,7 @@ machine:
   pre:
     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
     - sudo chmod 0755 /usr/bin/docker
-    - echo 'check_version() { curl "https://$PACKAGECLOUD_TOKEN:@packagecloud.io/api/v1/repos/circleci/trusty/packages.json" | grep $1 | grep $2 | grep $3  >/dev/null 2>&1; }' >> ~/.circlerc
+    - echo 'check_version() { curl "https://$PACKAGECLOUD_TOKEN:@packagecloud.io/api/v1/repos/circleci/trusty/packages.json" | fgrep $1 | fgrep $2 | fgrep $3  >/dev/null 2>&1; }' >> ~/.circlerc
     - echo 'build_pkg() { if ! check_version $1 $2 $3; then ./build-package $1 $2 $3 $4; fi; }' >> ~/.circlerc
     - echo 'build_ruby() { build_pkg ruby $1 $ruby_release $pkg_dir/ruby/ruby-$1; }' >> ~/.circlerc
     - echo 'build_python() { build_pkg python $1 $python_release $pkg_dir/python/$1; }' >> ~/.circlerc
@@ -74,7 +74,6 @@ test:
             push_pkg;
             ;;
           3)
-            build_php 5.5.30;
             build_php 5.5.31;
             build_php 5.5.32;
             build_php 5.6.16;
