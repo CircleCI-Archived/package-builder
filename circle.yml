@@ -82,6 +82,7 @@ test:
             build_php 7.0.1;
             build_php 7.0.2;
             build_php 7.0.3;
+            build_php 7.0.4;
             push_pkg;
             ;;
           4)
