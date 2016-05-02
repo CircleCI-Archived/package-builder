@@ -14,9 +14,9 @@ RUN if [ ! -d "php-build" ]; then git clone git://github.com/php-build/php-build
 # Enable pear support
 RUN sed -i 's/--without-pear//' /usr/local/share/php-build/default_configure_options
 
-# Create Apache module for PHP 7
+# Create Apache module
 # Prepending the line because otherwise php-build ignores the line (probably a bug of php-build)
-RUN sed -i -e '1iwith_apxs2 "/usr/bin/apxs2"' /usr/local/share/php-build/definitions/7.*
+RUN sed -i -e '1iwith_apxs2 "/usr/bin/apxs2"' /usr/local/share/php-build/definitions/*
 
 RUN php-build -i development ${version} ${install_dir}
 
