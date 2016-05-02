@@ -18,7 +18,7 @@ machine:
 
     python_release:   1
     ruby_release:     1
-    php_release:      1
+    php_release:      2
     nodejs_release:   1
 
 dependencies:
