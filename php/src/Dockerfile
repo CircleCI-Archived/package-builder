@@ -18,7 +18,7 @@ RUN sed -i 's/--without-pear//' /usr/local/share/php-build/default_configure_opt
 # Prepending the line because otherwise php-build ignores the line (probably a bug of php-build)
 RUN sed -i -e '1iwith_apxs2 "/usr/bin/apxs2"' /usr/local/share/php-build/definitions/*
 
-# Enabling intl for PHP7
+# Enabling intl
 # Customer request: https://discuss.circleci.com/t/ubuntu-trusty-has-no-pecl-support-under-php7/3700/10
 RUN echo '--enable-intl' | tee -a /usr/local/share/php-build/default_configure_options
 
