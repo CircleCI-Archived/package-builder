@@ -18,7 +18,7 @@ machine:
 
     python_release:   1
     ruby_release:     1
-    php_release:      2
+    php_release:      3
     nodejs_release:   1
 
 dependencies:
@@ -114,10 +114,3 @@ test:
 
       : parallel: true
         timeout: 3600
-
-#deployment:
-#  production:
-#    branch: master
-#    commands:
-#      # Packagecloud doesn't allow to override, so only new packages will be pushed.
-#      - for p in $(find ./ | grep _amd64.deb); do package_cloud push circleci/trusty/ubuntu/trusty $p; done; true
