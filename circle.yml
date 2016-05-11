@@ -103,7 +103,7 @@ test:
             build_nodejs 5.8.0;
             build_nodejs 5.9.0;
             build_nodejs 5.10.0;
-
+            build_nodejs 6.1.0;
 
             push_pkg;
             ;;

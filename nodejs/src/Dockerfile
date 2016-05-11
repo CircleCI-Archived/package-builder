@@ -8,6 +8,7 @@ RUN mkdir -p ${install_dir}
 ## Node configure options and build dependencies
 ENV deps "zlib1g-dev libreadline-dev libsqlite3-dev libgdbm-dev libssl-dev libbz2-dev"
 ENV CONFIGURE_OPTS "--enable-unicode=ucs4"
+ENV PATH ${install_dir}/bin:$PATH
 
 RUN apt-get update && apt-get -y install $deps
 
