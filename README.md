@@ -66,5 +66,5 @@ RUN fpm -s dir -t deb -C ${prefix}/${package}/${version} \
 Once you created src/Dockerfile, you can run `build-package` script from the top directory.
 
 ```
-./build-package ruby 2.2.2
+./build-package ruby 2.2.2 1 /opt/circleci/ruby/2.2.2
 ```
