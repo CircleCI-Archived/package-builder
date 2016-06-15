@@ -1,7 +1,6 @@
 # Design Goals
 - Separation between packaing building and image creation
 - Making package information open to users
-- No more *vm or *env
 - Automation
 
 # Package Repository
