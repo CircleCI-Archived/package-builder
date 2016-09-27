@@ -41,7 +41,7 @@ function build_package() {
 	    local install_dir=$pkg_dir/php/$version;
 	    ;;
 	nodejs)
-	    local install_dir=$pkg_dir/nodejs/$version;
+	    local install_dir=$pkg_dir/nodejs/v$version; # Watch out, 'v' is there!
 	    ;;
 	*)
 	    echo "unknown package: $package";
