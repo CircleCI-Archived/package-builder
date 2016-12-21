@@ -6,7 +6,7 @@ ARG install_dir
 RUN mkdir -p ${install_dir}
 
 ## Python configure options and build dependencies
-ENV deps "zlib1g-dev libreadline-dev libsqlite3-dev libgdbm-dev libssl-dev libbz2-dev"
+ENV deps "zlib1g-dev libreadline-dev libsqlite3-dev libgdbm-dev libssl-dev libbz2-dev libncurses5 libncurses5-dev libncursesw5"
 ENV CONFIGURE_OPTS "--enable-unicode=ucs4"
 
 RUN apt-get update && apt-get -y install $deps
