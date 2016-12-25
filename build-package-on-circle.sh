@@ -51,6 +51,7 @@ ruby_versions="
 2.3.1 \
 2.3.2 \
 2.3.3 \
+2.4.0 \
 "
 
 php_release=5
