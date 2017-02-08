@@ -83,6 +83,7 @@ php_versions="
 7.0.10 \
 7.0.11 \
 7.1.0 \
+7.1.1 \
 "
 
 nodejs_release=1
