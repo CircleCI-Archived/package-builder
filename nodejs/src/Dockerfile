@@ -17,6 +17,9 @@ RUN if [ ! -d "node-build" ]; then git clone https://github.com/nodenv/node-buil
 RUN node-build ${version} ${install_dir}
 
 RUN ${install_dir}/bin/npm config set ca "" --global
+# npm 5.0.0 which is bundled with nodejs 8x has this issue when used in Docker: https://github.com/npm/npm/issues/16896
+# Updating npm to the latest workaround this issue.
+RUN if [ $(${install_dir}/bin/npm  --version) == "5.0.0" ]; then ${install_dir}/bin/npm install -g npm; fi
 RUN ${install_dir}/bin/npm install -g coffee-script grunt bower grunt-cli nodeunit mocha
 
 RUN fpm -s dir -t deb -C ${install_dir} \
