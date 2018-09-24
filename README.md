@@ -1,5 +1,5 @@
 # Design Goals
-- Separation between packaing building and image creation
+- Separation between packaging building and image creation
 - Making package information open to users
 - Automation
 
@@ -9,9 +9,9 @@ https://packagecloud.io/circleci/circleci
 # How to use
 To build a new package, you first need to create directories and Dockerfiles.
 
-```
-Ex. python
+Ex. python :
 
+```
 ./python
   src/
     Dockerfile
@@ -23,7 +23,7 @@ The `src/Dockerfile` is used to build a package. Optionally you can create `test
 
 Here is an example for `src/Dockerfile` to create ruby package.
 
-**ruby/src/Dockerfile**
+`ruby/src/Dockerfile`
 
 ```
 ####### Don't change these lines!!
